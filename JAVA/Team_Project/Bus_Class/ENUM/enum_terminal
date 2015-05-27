@@ -1,0 +1,13 @@
+package ENUM;
+
+public class enum_terminal {
+	/*
+	 * 각 시트 순서에 대응
+	 * CENTR - 센트럴, SB - 상봉, DS - 동서울, NB - 남부
+	 * 터미널을 추가할 경우 각 터미널 시작 값과 끝값은 유지해주세요
+	 */
+	public enum TERMINAL {CENTR_CB,CENTR_JB,CENTR_JN, CENTR_KK,
+								 SB_GO,SB_EXT,
+								 DS_HN,DS_YD,DS_KB,
+								 NB_CC,NB_JR,NB_KS,NB_KK};
+}
