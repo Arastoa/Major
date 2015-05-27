@@ -1,0 +1,188 @@
+<!DOCTYPE HTML SYSTEM>
+<html>
+<head>
+	<title>Register</title>
+
+<style type="text/css">
+	th {font-family: "SMCasiopeaL"; font-size: 18px; }
+
+</style>
+<script type="text/javascript">
+<!--
+	function login_check(){
+
+		var regExp = 	/[\u3131-\u314e|\u314f-\u3163|\uac00-\ud7a3]/g;
+		
+		if(!regExp_check(document.Regist_member.username,regExp)){
+			alert("이름을 다시 확인해주세요");
+			return false;
+		}
+
+		regExp = /^[a-z0-9]{3,12}$/i;	//i는 대소문자 무시 옵션
+
+		if(!regExp_check(document.Regist_member.userid,regExp)){
+			alert("아이디를 다시 확인해주세요");
+			return false;
+		}
+		else if(!regExp_check(document.Regist_member.userpwd,regExp)){
+			alert("비밀번호를 다시 확인해주세요");
+			return false;
+		}
+		if(!regExp_check(document.Regist_member.userpwd,regExp) ||
+			document.Regist_member.userpwd.value != document.Regist_member.confirmpwd.value){
+			alert("비밀번호 확인란을 다시 입력해주세요");
+			return false;
+		}
+		if(document.Regist_member.pwhint.value=="") {
+			alert("비밀번호 힌트를 선택하세요");
+			return false;
+		}
+		if(document.Regist_member.answer.value=="") {
+			alert("답변을 다시 확인해주세요");
+			document.Regist_member.answer.focus();
+			return false;
+		}
+		if(!regExp_check(document.Regist_member.email,regExp)){
+			alert("이메일을 다시 확인해주세요");
+			return false;
+		}
+				if(document.Regist_member.email_dns.value =="" && document.Regist_member.email_addr.value=="") {
+			alert("이메일 도메인을 다시 확인해주세요");
+			return false;
+		}
+		if(document.Regist_member.job.value=="") {
+			alert("직업을 선택하세요");
+			return false;
+		}
+
+		return true;
+	}
+
+	function regExp_check(obj,regExp){
+		if( obj.value.length > 0 )
+		{
+			if(!regExp.test(obj.value))
+			{
+				obj.value = "";
+				obj.focus();
+				return false;
+			}
+			else
+				return true;
+		}
+		return false;
+	}
+
+	function dns_change() {
+		if(document.Regist_member.email_addr.value!=""){
+			document.Regist_member.email_dns.value=document.Regist_member.email_addr.value;
+			document.Regist_member.email_dns.disabled=true;
+		}
+		else
+			document.Regist_member.email_dns.disabled=false;
+	}
+//-->
+
+
+</script>
+</head>
+
+<body>
+	<form name="Regist_member" method="POST" action="Register.php"  onsubmit="return login_check();">
+	<table height=800 width="100%" style="padding:5px;">
+		<tr height="2" bgcolor="#6b8e23"><td colspan="2"></td></tr>
+		<tr>
+			<th>이름</th>
+			<td><input type="text" name="username"></td>
+		</tr>
+		<tr>
+			<th>아이디</th>
+			<td>
+				<input type="text" name="userid">
+			</td>
+		</tr>
+		<tr>
+			<th>비밀번호</th>
+			<td><input type="password" name="userpwd"></td>
+		</tr>
+		<tr>
+			<th>비밀번호 확인</th>
+			<td><input type="password" name="confirmpwd"></td>
+
+		</tr>
+		<tr>
+			<th>비밀번호 힌트</th>
+			<td><select name="pwhint" size=1 class="select">
+				<option value="">선택하세요</option>
+				<option value="0">아버지 성함은?</option>
+				<option value="1">어머니 성함은?</option>
+				<option value="2">가장 아끼는 물건은?</option>
+				<option value="3">어릴 적 별명은?</option>
+				<option value="4">좋아하는 색깔은?</option>
+				<option value="5">애완동물 이름은?</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<th>답변</th>
+			<td><input type="text" name="answer"></td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td><input type="text" name="email">@<input type="text" name="email_dns">
+			<select name="email_addr" onChange="dns_change()">
+				<option value="">직접입력</option>
+				<option value="naver.com">naver.com</option>
+				<option value="daum.net">daum.net</option>
+				<option value="gmail.com">gmail.com</option>
+				<option value="nate.com">nate.com</option>
+
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<th>직업</th>
+			<td>
+				<select name="job" size=1>
+					<option value="">선택하세요</option>
+					<option value="0">학생</option>
+					<option value="1">컴퓨터/인터넷</option>
+					<option value="2">언론</option>
+					<option value="3">공무원</option>
+					<option value="4">서비스업</option>
+					<option value="5">교육</option>
+					<option value="6">기타</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>메일/SNS 정보수신</th>
+			<td>
+				<input type="radio" name="sns" checked value="1">수신
+				<input type="radio" name="sns" value="0">수신거부
+			</td>
+		</tr>
+		<tr>
+			<th>관심분야</th>
+			<td>
+				<input type="checkbox" name="interest[]" value="0">생두
+				<input type="checkbox" name="interest[]" value="1">원두
+				<input type="checkbox" name="interest[]" value="2">로스팅
+				<input type="checkbox" name="interest[]" value="3">핸드드립
+				<input type="checkbox" name="interest[]" value="4">에스프레소
+				<input type="checkbox" name="interest[]" value="5">창업
+
+			</td>
+		</tr>
+		<tr height="2" bgcolor="#6b8e23"><td colspan="2"></td></tr>
+		<tr>
+			<td colspan="2" align=center>
+			<input type="submit" value="회원가입" style="font-family:SMCasiopeaL; font-size:15px;">
+			<input type="reset" value="취소" style="font-family:SMCasiopeaL; font-size:15px;"></td>
+		</tr>
+	</table>
+	</form>
+	
+	
+</body>
+</html>
